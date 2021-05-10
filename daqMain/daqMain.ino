@@ -108,7 +108,7 @@ const int CSpin = 49;
 String dataString =""; // holds the data to be written to the SD card
 String fileName;
 File sensorData;
-int readFrequency = 1000; // CHANGE THIS TO READ FASTER/SLOWER (units in ms)
+int readFrequency = 100; // CHANGE THIS TO READ FASTER/SLOWER (units in ms)
 
 //Debug and testing
 bool enableSerialMessages = false;
@@ -189,10 +189,10 @@ float convertSensor(int sensorValue, int calibration=0){
 
 void setup() {
   // Open serial communications
-  if(enableSerialMessages){
-  Serial.begin(9600);
-  Serial.print("Initializing SD card...");}
-  //xbee.begin(9600);
+  //if(enableSerialMessages){
+  //Serial.begin(9600);
+  //Serial.print("Initializing SD card...");}
+  xbee.begin(9600);
   
   for (int i = 4; i <= 15; i++) {
     pinMode(i, OUTPUT);
@@ -259,7 +259,7 @@ void setup() {
   // write headers
   sensorData = SD.open(fileName, FILE_WRITE);
   if (sensorData){
-      sensorData.println("FL_VSS,FR_VSS,BL_VSS,BR_VSS,FL_BRK_TMP,FR_BRK_TMP,BL_BRK_TMP,BR_BRK_TMP,FL_SUS_POT,FR_SUS_POT,BL_SUS_POT,BR_SUS_POT,F_BRK_PRES,B_BRK_PRES,STEER_ANG,TPS,OIL_PRES,OIL_TEMP,COOL_TEMP,MAP,MAT,NEUT,LAMBDA1,LAMBDA2,ACCELX,ACCELY,ACCELZ,STRAIN1,STRAIN2,STRAIN3,STRAIN4,PTUBE1,PTUBE2,PTUBE3,PTUBE4,PTUBE5,PTUBE6,PTUBE7,PTUBE8,PTUBE9,PTUBE10,PTUBE11,PTUBE12,GYROX,GYROY,GYROZ,MAGNETX,MAGNETY,MAGNETZ,DAQTEMP");
+      sensorData.println("FL_VSS,FR_VSS,BL_VSS,BR_VSS,FL_BRK_TMP,FR_BRK_TMP,BL_BRK_TMP,BR_BRK_TMP,FL_SUS_POT,FR_SUS_POT,BL_SUS_POT,BR_SUS_POT,F_BRK_PRES,B_BRK_PRES,STEER_ANG,TPS,OIL_PRES,GYROX,GYROY,GYROZ,MAGNETX,MAGNETY,MAGNETZ,DAQTEMP,ACCELX,ACCELY,ACCELZ,STRAIN1,STRAIN2,STRAIN3,STRAIN4,PTUBE1,PTUBE2,PTUBE3,PTUBE4,PTUBE5,PTUBE6,PTUBE7,PTUBE8,PTUBE9,PTUBE10,PTUBE11,PTUBE12");
       sensorData.close(); // close the file
       if(enableSerialMessages){Serial.println("First line of file written");}
     } else {

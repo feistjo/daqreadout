@@ -14,19 +14,20 @@ void analogSensors(){
   allSensors[12] = (convertSensor(analogRead(F_BRK_PRES_PIN), F_BRK_PRES_CLB) - 0.50)/ (4/7500);
   allSensors[13] = can_read(1); // back brk pres
   allSensors[14] = convertSensor(analogRead(STEER_ANG_PIN), STEER_ANG_CLB);
-  // motec
+  // motec (but not really anymore)
+  IMU.readSensor();
   allSensors[15] = can_read(31); // TPS
   allSensors[16] = can_read(20); // OIL_PRES
-  allSensors[17] = can_read(21); // OIL_TEMP
-  allSensors[18] = can_read(53); // COOL_TEMP
-  allSensors[19] = can_read(51); // MAP
-  allSensors[20] = can_read(52); // MAT
-  allSensors[21] = can_read(30); // NEUT
-  allSensors[22] = can_read(40); // LAMBDA1
-  allSensors[23] = can_read(41); // LAMBDA2
+  allSensors[17] = IMU.getGyroX_rads();
+  allSensors[18] = IMU.getGyroY_rads();
+  allSensors[19] = IMU.getGyroZ_rads();
+  allSensors[20] = IMU.getMagX_uT();
+  allSensors[21] = IMU.getMagY_uT();
+  allSensors[22] = IMU.getMagZ_uT();
+  allSensors[23] = IMU.getTemperature_C();
 
   // imu
-  IMU.readSensor();
+  
   allSensors[24] = IMU.getAccelX_mss();
   allSensors[25] = IMU.getAccelY_mss();
   allSensors[26] = IMU.getAccelZ_mss();
@@ -49,11 +50,5 @@ void analogSensors(){
   allSensors[40] = convertSensor(analogRead(PTUBE10_PIN), PTUBE_CLB);
   allSensors[41] = convertSensor(ads1115a.readADC_SingleEnded(0));
   allSensors[42] = convertSensor(ads1115a.readADC_SingleEnded(0));
-  allSensors[43] = IMU.getGyroX_rads();
-  allSensors[44] = IMU.getGyroY_rads();
-  allSensors[45] = IMU.getGyroZ_rads();
-  allSensors[46] = IMU.getMagX_uT();
-  allSensors[47] = IMU.getMagY_uT();
-  allSensors[48] = IMU.getMagZ_uT();
-  allSensors[49] = IMU.getTemperature_C();
+  
 }
