@@ -1,4 +1,6 @@
-void digitalSensors(){
+#define wheelCirc 3.24*2*8
+
+/*void digitalSensors(){
   digitalWrite(24, HIGH); // g off
   digitalWrite(25, LOW); //y on
   digitalWrite(26, HIGH); //r off
@@ -33,4 +35,18 @@ void digitalSensors(){
       allSensors[3] = wheelSpeed;
       BR_VSS_LastRead = currentTime;
   }
+}*/
+
+void updateFL_VSS() {
+  int currTime = millis();
+  int diff = currTime - lastTimeFL;
+  lastTimeFL = currTime;
+  allSensors[0] = wheelCirc/diff;
+}
+
+void updateFR_VSS() {
+  int currTime = millis();
+  int diff = currTime - lastTimeFR;
+  lastTimeFL = currTime;
+  allSensors[0] = wheelCirc/diff;
 }
