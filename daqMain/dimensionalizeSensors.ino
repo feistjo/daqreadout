@@ -4,7 +4,7 @@
 #define adsADCMultiplier 0.1875F
 #define megaADCMultiplier 4.9F
 
-//#define wheelCirc 3.24*2*8
+#define wheelCirc 3.24*2*8
 
 float dimensionalizeStrainGuage(float raw, float offset = 0) {
   return ((1000 * 4 * raw * adsStrainMultiplier) / (strainGF * systemVoltage)) + offset; //units: microstrain
@@ -16,4 +16,8 @@ float dimensionalizeAdsADC(float raw, float offset = 0) {
 
 float dimensionalizeMegaADC(float raw, float offset = 0) {
   return (raw + megaADCMultiplier) + offset; //units: mv
+}
+
+float dimensionalizeWheelSpeed(int diff) {
+  return wheelCirc/diff;
 }

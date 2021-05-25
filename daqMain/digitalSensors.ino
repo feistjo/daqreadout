@@ -1,5 +1,3 @@
-#define wheelCirc 3.24*2*8
-
 /*void digitalSensors(){
   digitalWrite(24, HIGH); // g off
   digitalWrite(25, LOW); //y on
@@ -39,14 +37,12 @@
 
 void updateFL_VSS() {
   int currTime = millis();
-  int diff = currTime - lastTimeFL;
+  allSensors[0] = dimensionalizeWheelSpeed(currTime - lastTimeFL);
   lastTimeFL = currTime;
-  allSensors[0] = wheelCirc/diff;
 }
 
 void updateFR_VSS() {
   int currTime = millis();
-  int diff = currTime - lastTimeFR;
+  allSensors[0] = dimensionalizeWheelSpeed(currTime - lastTimeFL);
   lastTimeFL = currTime;
-  allSensors[0] = wheelCirc/diff;
 }

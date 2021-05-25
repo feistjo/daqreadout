@@ -192,6 +192,7 @@ float convertSensor(int sensorValue, int calibration=0){
 float dimensionalizeStrainGuage(float raw, float offset = 0);
 float dimensionalizeAdsADC(float raw, float offset = 0);
 float dimensionalizeMegaADC(float raw, float offset = 0);
+float dimensionalizeWheelSpeed(int diff);
 
 
 void setup() {
